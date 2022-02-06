@@ -1,13 +1,11 @@
 <script>
-	export let name;
+	import Router from 'svelte-spa-router';
+	import routes from './routes';
 </script>
 
-<div class="flex h-screen">
-	<div class="container m-auto text-center">
-		<h1 class="text-xl text-blue-500">Welcome to WaterWays</h1>
-		<h1 class="text-3xl">Log In</h1>
-	</div>
-</div>
+<main>
+	<Router {routes}/>
+</main>
 
 <style lang="postcss" global>
 	@tailwind base;
