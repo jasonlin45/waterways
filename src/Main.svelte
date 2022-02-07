@@ -2,9 +2,11 @@
 	import {auth} from './firebase';
 	import {signOut} from "firebase/auth";
 	import {authState} from 'rxfire/auth';
+    import {push} from 'svelte-spa-router';
 
 	import Profile from './Profile.svelte';
-    import {push} from 'svelte-spa-router';
+    import Waterlog from './components/Waterlog.svelte';
+
     let loaded = false;
     let user;
 
@@ -26,8 +28,8 @@
 </script>
 
 {#if loaded}
-<div class="container">
-    <Profile {...user}/>
+<div class="container text-center mx-auto">
+    <Waterlog uid={user.uid}/>
     <button on:click={logout}>sign out</button>
 </div>
 {:else}
