@@ -18,6 +18,8 @@ This project is build in [Svelte](https://svelte.dev) and using [Tailwind](tailw
 
 The app uses [Google Firebase](https://firebase.google.com/), specifically for its NoSQL database and authentication.
 
+*This app is not intended to be shining example of code quality.  This is a fun project I did for my lab, and I would like to do some heavy refactoring*
+
 ### Get started
 Install the dependencies...
 
