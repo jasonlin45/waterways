@@ -1,12 +1,11 @@
 <script>
-	import {auth} from './firebase';
-	import {signOut} from "firebase/auth";
+	import {auth, googleProvider} from './firebase';
+	import {signInWithPopup, signOut} from "firebase/auth";
 	import {authState} from 'rxfire/auth';
-    import {push} from 'svelte-spa-router';
 
-    import Waterlog from './components/Waterlog.svelte';
-    import Navbar from './Navbar.svelte';
-    
+	import Profile from './Profile.svelte';
+	import TodoList from './TodoList.svelte';
+    import {push} from 'svelte-spa-router';
     let loaded = false;
     let user;
 
@@ -27,12 +26,12 @@
 
 </script>
 
-<Navbar/>
 {#if loaded}
-<Waterlog uid={user.uid}/>
+ABRADABRA
+<Profile {...user}/>
 <button on:click={logout}>sign out</button>
+<hr>
+<TodoList uid={user.uid}/>
 {:else}
-<div class="flex h-screen">
-    LOADING...
-</div>
+LOADING...
 {/if}
