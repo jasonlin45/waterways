@@ -1,6 +1,6 @@
 <script>
     import { db } from '../firebase';
-    import { collection, where, query, updateDoc, addDoc, doc, deleteDoc} from 'firebase/firestore';
+    import { increment, collection, where, query, updateDoc, addDoc, doc, deleteDoc} from 'firebase/firestore';
     import { collectionData } from 'rxfire/firestore';
     import { onDestroy } from 'svelte';
     import Progress from './Progress.svelte';
@@ -9,10 +9,12 @@
     export let uid;
     let today = new Date();
     today.setHours(0,0,0,0)
-    
     // Form Text
     let amt = 16;
     let goal = 100;
+    let days_reached = 0;
+
+    let id;
     const w_ref = collection(db, "waterlog");
     const u_ref = collection(db, "users");
 
@@ -40,11 +42,16 @@
     const unsub_u = collectionData(uq, {idField: 'id'})
         .subscribe(d => { 
             goal = d[0].goal;
+            id = d[0].id;
+            if(d[0].days_reached) days_reached = d[0].days_reached;
         });
 
     function add(amt) {   
         if(amt) 
             addDoc(w_ref, { uid, amt: amt, date: Date.now() });
+            if(progress < goal && amt + progress >= goal){
+                updateDoc(doc(u_ref, id), {days_reached: increment(1)})
+            }
     }
 
     function removeItem(event){
@@ -67,7 +74,7 @@
 
 </script>
     <div class="text-center w-fit mx-auto relative">
-        <Progress amt={progress} goal={goal}/>
+        <Progress amt={progress} goal={goal} days_reached={days_reached}/>
         <div class="lg:absolute lg:left-full lg:top-24 lg:h-full lg:w-48 lg:space-y-4">
             {#each containers as c}
                 <button class="lg:flex
