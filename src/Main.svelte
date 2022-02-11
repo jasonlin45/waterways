@@ -7,6 +7,8 @@
     import Waterlog from './components/Waterlog.svelte';
     import Navbar from './Navbar.svelte';
     
+    import { onDestroy } from 'svelte';
+
     let loaded = false;
     let user;
 
@@ -25,6 +27,9 @@
         push('/login');
 	}
 
+    onDestroy(() => {
+        unsubscribe.unsubscribe();
+    })
 </script>
 
 <Navbar/>

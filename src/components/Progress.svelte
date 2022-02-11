@@ -4,6 +4,7 @@
 
     export let amt;
     export let goal;
+    export let days_reached;
 
     const pct = tweened(0, {
         duration: 1000,
@@ -22,6 +23,8 @@
 
 <p class="opacity-60">
   So far today &middot {Math.floor($pct * 100)}% of {goal}oz goal
+  <br>
+  {days_reached} Day{days_reached==1 ? '':'s'} Reached
 </p>
 
 <svg class="h-[75vh] w-full m-auto" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"

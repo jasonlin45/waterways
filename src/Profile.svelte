@@ -7,7 +7,7 @@
     import { authGuard } from './authGuard';
     import Navbar from './Navbar.svelte';
     import { onDestroy } from 'svelte';
-    authGuard();
+    const unsub = authGuard();
 
     let loaded = false;
     let user;
@@ -28,6 +28,7 @@
 
     onDestroy(() => {
         unsubscribe.unsubscribe();
+        unsub.unsubscribe();
     })
 
 </script>
