@@ -78,9 +78,9 @@
 </script>
 <!-- <button on:click={update}>test</button> -->
 {#if loaded && u_loaded}
-<div in:fade>
+<div in:fade class="w-1/2 md:w-full mx-auto">
     <h3 class="text-center text-3xl text-blue-500 mb-8">Daily Progress</h3>
-    <div class="container mx-auto max-w-2xl p-8 md:p-0 space-y-8 border-x-2">
+    <div class="container mx-auto max-w-2xl md:p-0 space-y-8 border-x-2">
         {#each sort(data) as d}
         <div class="w-full mx-auto">
             <span class="float-right h-0 px-4 text-lg font-medium" style="margin-right: 100%">{name_map[d.uid]}</span>
