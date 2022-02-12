@@ -48,10 +48,10 @@
 
     function add(amt) {   
         if(amt) 
-            addDoc(w_ref, { uid, amt: amt, date: Date.now() });
             if(progress < goal && amt + progress >= goal){
                 updateDoc(doc(u_ref, id), {days_reached: increment(1)})
             }
+            addDoc(w_ref, { uid, amt: amt, date: Date.now() });
     }
 
     function removeItem(event){
