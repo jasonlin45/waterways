@@ -3,6 +3,7 @@
     import { collection, where, query, updateDoc, addDoc, doc, deleteDoc} from 'firebase/firestore';
     import { collectionData } from 'rxfire/firestore';
     import Container from './Container.svelte';
+    import { onDestroy } from 'svelte';
 
     // User ID passed from parent
     export let uid;
@@ -18,7 +19,7 @@
     )
 
     let containers = []
-    collectionData(q, {idField: 'id'})
+    const unsub = collectionData(q, {idField: 'id'})
         .subscribe(d => {
             containers = d;
          });
@@ -37,6 +38,10 @@
         const { id, newStatus } = event.detail;
         updateDoc(doc(ref, id), {complete: newStatus});
     };
+
+    onDestroy(() => {
+        unsub.unsubscribe();
+    })
 
 </script>
 
