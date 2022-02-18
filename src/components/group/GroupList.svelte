@@ -11,7 +11,7 @@
             deleteDoc, 
             writeBatch, 
             getDocs,
-getDoc} from 'firebase/firestore';
+            getDoc} from 'firebase/firestore';
 
     import { collectionData } from 'rxfire/firestore';
     import Group from './Group.svelte';

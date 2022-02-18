@@ -25,11 +25,13 @@
     const g_ref = collection(db, "groups");
     
     let user;
+    let groups = [];
     const u_unsubscribe = authState(auth)
       .pipe(
         mergeMap(u => collectionData(query(u_ref, where('uid', '==', u.uid))))
       ).subscribe(r => {
         user = r[0];
+        groups = user.groups ? user.groups : [];
       });
 
     const q = query(
@@ -117,7 +119,7 @@
     <option value="Global">
       Global
     </option>
-    {#each user.groups as group}
+    {#each groups as group}
     <option value={group}>
         {#await getGroupName(group) then name}
           {name}
