@@ -35,7 +35,6 @@
 <Navbar/>
 {#if loaded}
 <Waterlog uid={user.uid}/>
-<button on:click={logout}>sign out</button>
 {:else}
 <div class="flex h-screen">
     LOADING...
