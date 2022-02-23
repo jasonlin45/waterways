@@ -13,11 +13,14 @@
 
 </script>
 
-<li class="p-4 rounded-xl bg-blue-100 max-w-fit mx-auto">
+<div class="p-4 rounded-xl bg-blue-100 flex-grow mx-auto">
 💧
 <h3 class="text-xl">
     {name}    
-</h3>{size} members
+</h3>
+<span>
+    {size} members
+</span>
 <!-- <button on:click={remove} class="border-none"> ❌ </button> -->
 
-</li>
+</div>

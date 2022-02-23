@@ -110,49 +110,52 @@
 </script>
 
 {#if loaded}
-<h3 class="text-2xl text-blue-500 font-medium">My Groups</h3>
-<hr>
+<h3 class="text-2xl text-blue-500 font-medium border-b-2 border-blue-200 py-2">My Groups</h3>
 {#if (groups.length==0)}
     No groups yet!  Click create group to create a new group!
 {:else}
-<ul>
+<div class="flex gap-8 justify-items-center justify-center mx-auto flex-wrap">
     {#each groups as group}
+    <div>
         <Group id={group.id} name={group.name} size={group.members.length} on:remove={removeItem} on:toggle={updateStatus} />
+    </div>
     {/each}
-</ul>
+</div>
 {/if}
 
-<div class="border-2 border-blue-100 max-w-fit mx-auto rounded-xl p-4 space-y-4">
-    <h3 class="text-2xl text-blue-500">Join a Group</h3>
-    <div>
-        <label for="name">Name</label>
-        <input class="py-1 px-2 rounded-xl border-blue-200" id="code" type="text" bind:value={code}>
+<div class="flex gap-8 justify-items-center justify-center mx-auto flex-wrap">
+    <div class="border-2 border-blue-100 max-w-fit rounded-xl p-4 space-y-4">
+        <h3 class="text-2xl text-blue-500">Join a Group</h3>
+        <div>
+            <label for="name">Name</label>
+            <input class="py-1 px-2 rounded-xl border-blue-200" id="code" type="text" bind:value={code}>
+        </div>
+        {#if not_found}
+        <span class="text-red-500">
+            Group "{code}" not found!
+        </span>
+        <br>
+        {/if}
+        <button on:click={join} class="m-2 px-2 rounded-full bg-blue-500 text-white hover:ring-1 ring-blue-500 text-lg">Join</button>
     </div>
-    {#if not_found}
-    <span class="text-red-500">
-        Group "{code}" not found!
-    </span>
-    <br>
-    {/if}
-    <button on:click={join} class="m-2 px-2 rounded-full bg-blue-500 text-white hover:ring-1 ring-blue-500 text-lg">Join</button>
-</div>
-<div class="border-2 border-blue-100 max-w-fit mx-auto rounded-xl p-4 space-y-4">
-    <h3 class="text-2xl text-blue-500">Make a New Group</h3>
-    <div>
-        <label for="name">Name</label>
-        <input 
-            class="py-1 px-2 rounded-xl border-blue-200" 
-            id="name" 
-            type="text" 
-            bind:value={name}
-            on:focus={()=>taken=false}>
+    <div class="border-2 border-blue-100 max-w-fit rounded-xl p-4 space-y-4">
+        <h3 class="text-2xl text-blue-500">Make a New Group</h3>
+        <div>
+            <label for="name">Name</label>
+            <input 
+                class="py-1 px-2 rounded-xl border-blue-200" 
+                id="name" 
+                type="text" 
+                bind:value={name}
+                on:focus={()=>taken=false}>
+        </div>
+        {#if taken}
+        <span class="text-red-500">
+            The name is taken!
+        </span>
+        <br>
+        {/if}
+        <button on:click={add} class="m-2 px-2 rounded-full bg-blue-500 text-white hover:ring-1 ring-blue-500 text-lg">Add</button>
     </div>
-    {#if taken}
-    <span class="text-red-500">
-        The name is taken!
-    </span>
-    <br>
-    {/if}
-    <button on:click={add} class="m-2 px-2 rounded-full bg-blue-500 text-white hover:ring-1 ring-blue-500 text-lg">Add</button>
 </div>
 {/if}
