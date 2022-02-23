@@ -73,34 +73,34 @@
     ]
 
 </script>
-    <div class="text-center w-fit mx-auto relative">
-        <Progress amt={progress} goal={goal} days_reached={days_reached}/>
-        <div class="lg:absolute lg:left-full lg:top-24 lg:h-full lg:w-48 lg:space-y-4">
-            {#each containers as c}
-                <button class="lg:flex
-                            border-2 
-                            border-blue-500 
-                            rounded-full 
-                            text-blue-500
-                            text-left
-                            text-xl
-                            w-fit
-                            m-4
-                            p-2 px-4
-                            hover:text-white
-                            hover:bg-blue-500
-                            transition"
-                        on:click={() => add(c.amt)}>
-                    Add {c.amt}oz
-                </button>
-            {/each}
-        </div>
+<div class="text-center w-fit mx-auto relative">
+    <Progress amt={progress} goal={goal} days_reached={days_reached}/>
+    <div class="lg:absolute lg:left-full lg:top-24 lg:h-full lg:w-48 lg:space-y-4">
+        {#each containers as c}
+            <button class="lg:flex
+                        border-2 
+                        border-blue-500 
+                        rounded-full 
+                        text-blue-500
+                        text-left
+                        text-xl
+                        w-fit
+                        m-4
+                        p-2 px-4
+                        hover:text-white
+                        hover:bg-blue-500
+                        transition"
+                    on:click={() => add(c.amt)}>
+                Add {c.amt}oz
+            </button>
+        {/each}
     </div>
-    <div class="border-2 border-blue-100 max-w-fit mx-auto rounded-xl p-4 space-y-4">
-        <h3 class="text-2xl text-blue-500">Make a new entry</h3>
-        <div>
-            <label for="number">Amount (Oz)</label>
-            <input class="py-1 px-2 rounded-xl border-blue-200" id="number" type="number" bind:value={amt}>
-        </div>
-        <button on:click={() => add(amt)} class="m-2 px-2 rounded-full bg-blue-500 text-white hover:ring-1 ring-blue-500 text-lg">Add</button>
+</div>
+<!-- <div class="border-2 border-blue-100 max-w-fit mx-auto rounded-xl p-4 space-y-4">
+    <h3 class="text-2xl text-blue-500">Make a new entry</h3>
+    <div>
+        <label for="number">Amount (Oz)</label>
+        <input class="py-1 px-2 rounded-xl border-blue-200" id="number" type="number" bind:value={amt}>
     </div>
+    <button on:click={() => add(amt)} class="m-2 px-2 rounded-full bg-blue-500 text-white hover:ring-1 ring-blue-500 text-lg">Add</button>
+</div> -->
